@@ -19,6 +19,7 @@ import {
 
 type AuthContextValue = {
   user: AuthUser | null
+  clienteId: string | null
   isLoading: boolean
   login: (email: string, password: string) => Promise<AuthUser>
   logout: () => void
@@ -30,6 +31,8 @@ const AuthContext = createContext<AuthContextValue | null>(null)
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<AuthUser | null>(null)
   const [isLoading, setIsLoading] = useState(true)
+
+  const clienteId = user?.clienteId ?? null
 
   const clearSession = useCallback(() => {
     clearStoredToken()
@@ -57,8 +60,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       try {
         const dto = await fetchCurrentUser(token)
+        const mapped = mapCurrentUser(dto)
         if (!cancelled) {
-          setUser(mapCurrentUser(dto))
+          setUser(mapped)
         }
       } catch {
         clearStoredToken()
@@ -97,12 +101,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const value = useMemo(
     () => ({
       user,
+      clienteId,
       isLoading,
       login,
       logout,
       getAccessToken,
     }),
-    [user, isLoading, login, logout, getAccessToken],
+    [user, clienteId, isLoading, login, logout, getAccessToken],
   )
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

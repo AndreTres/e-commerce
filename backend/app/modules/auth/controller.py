@@ -40,4 +40,5 @@ def get_me(current_user: Annotated[Usuario, Depends(get_current_user)]) -> Curre
         id=current_user.id,
         email=current_user.email,
         role=current_user.role,
+        cliente_id=current_user.cliente_id,
     )

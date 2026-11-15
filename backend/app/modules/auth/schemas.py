@@ -17,3 +17,4 @@ class CurrentUserResponse(BaseModel):
     id: UUID
     email: EmailStr
     role: str
+    cliente_id: UUID | None = None

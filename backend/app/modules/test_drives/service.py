@@ -28,6 +28,7 @@ INVALID_STATUS_TRANSITION = "Test drive status transition is not allowed"
 CLIENT_PROFILE_REQUIRED = "Authenticated client account is not linked to a customer record"
 CLIENT_ID_REQUIRED = "cliente_id is required for this operation"
 APPOINTMENT_FINALIZED = "Final test drive appointments cannot be modified"
+CLIENT_STATUS_UPDATE_DENIED = "Clients may only cancel their own test drive appointments"
 
 
 class TestDriveService:
@@ -104,13 +105,32 @@ class TestDriveService:
         appointment.observacoes = payload.observacoes
         return self._repository.update(appointment)
 
-    def update_status(self, appointment_id: UUID, new_status: TestDriveStatus) -> TestDrive:
+    def update_status(
+        self,
+        appointment_id: UUID,
+        new_status: TestDriveStatus,
+        actor: Usuario,
+    ) -> TestDrive:
         try:
             appointment = self._repository.get_by_id(appointment_id)
             if appointment is None:
                 raise ValueError(TEST_DRIVE_NOT_FOUND)
 
+            self._ensure_can_access(appointment, actor)
+            role = UserRole(actor.role)
             current_status = TestDriveStatus(appointment.status)
+
+            if role == UserRole.CLIENT:
+                if actor.cliente_id is None:
+                    raise ValueError(CLIENT_PROFILE_REQUIRED)
+                if new_status != TestDriveStatus.CANCELADO:
+                    raise ValueError(CLIENT_STATUS_UPDATE_DENIED)
+                if current_status not in (
+                    TestDriveStatus.AGENDADO,
+                    TestDriveStatus.CONFIRMADO,
+                ):
+                    raise ValueError(INVALID_STATUS_TRANSITION)
+
             if new_status not in ALLOWED_TEST_DRIVE_TRANSITIONS[current_status]:
                 raise ValueError(INVALID_STATUS_TRANSITION)
 

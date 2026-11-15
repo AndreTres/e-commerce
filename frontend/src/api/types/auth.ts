@@ -12,4 +12,5 @@ export type CurrentUserResponseBody = {
   id: string
   email: string
   role: string
+  cliente_id: string | null
 }

@@ -23,6 +23,7 @@ from app.modules.test_drives.service import (
     CLIENT_ID_REQUIRED,
     CLIENT_NOT_FOUND,
     CLIENT_PROFILE_REQUIRED,
+    CLIENT_STATUS_UPDATE_DENIED,
     INVALID_STATUS_TRANSITION,
     SCHEDULING_CONFLICT,
     TEST_DRIVE_ACCESS_DENIED,
@@ -61,6 +62,7 @@ def _handle_service_error(exc: ValueError) -> None:
         CLIENT_NOT_FOUND: status.HTTP_404_NOT_FOUND,
         VEHICLE_NOT_FOUND: status.HTTP_404_NOT_FOUND,
         TEST_DRIVE_ACCESS_DENIED: status.HTTP_403_FORBIDDEN,
+        CLIENT_STATUS_UPDATE_DENIED: status.HTTP_403_FORBIDDEN,
         CLIENT_PROFILE_REQUIRED: status.HTTP_400_BAD_REQUEST,
         CLIENT_ID_REQUIRED: status.HTTP_422_UNPROCESSABLE_ENTITY,
         VEHICLE_NOT_ELIGIBLE: status.HTTP_409_CONFLICT,
@@ -140,11 +142,11 @@ def update_test_drive(
 def update_test_drive_status(
     test_drive_id: UUID,
     payload: TestDriveStatusUpdateRequest,
-    _: TestDriveManagers,
+    actor: Annotated[Usuario, Depends(get_current_user)],
     service: Annotated[TestDriveService, Depends(get_test_drive_service)],
 ) -> TestDriveResponse:
     try:
-        appointment = service.update_status(test_drive_id, payload.status)
+        appointment = service.update_status(test_drive_id, payload.status, actor)
     except ValueError as exc:
         _handle_service_error(exc)
         raise

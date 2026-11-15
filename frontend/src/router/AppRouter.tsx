@@ -1,9 +1,19 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { AdminDashboardPage } from '../pages/admin/AdminDashboardPage'
 import { AdminProtectedOutlet } from '../auth/AdminProtectedOutlet'
 import { RequireAuth } from '../auth/RequireAuth'
 import { RequireGuest } from '../auth/RequireGuest'
 import { PlaceholderPage } from '../components/PlaceholderPage'
+import { AccountDashboardPage } from '../pages/account/AccountDashboardPage'
+import { CustomerProfilePage } from '../pages/account/CustomerProfilePage'
+import { MyPurchasesPage } from '../pages/account/MyPurchasesPage'
+import { MyFinancingPage } from '../pages/account/MyFinancingPage'
+import { MyTestDrivesPage } from '../pages/account/MyTestDrivesPage'
+import { PurchaseDetailsPage } from '../pages/account/PurchaseDetailsPage'
+import { HomePage } from '../pages/public/HomePage'
 import { LoginPage } from '../pages/public/LoginPage'
+import { VehicleCatalogPage } from '../pages/public/VehicleCatalogPage'
+import { VehicleDetailsPage } from '../pages/public/VehicleDetailsPage'
 import { AccountLayout } from '../layouts/AccountLayout'
 import { AdminLayout } from '../layouts/AdminLayout'
 import { PublicLayout } from '../layouts/PublicLayout'
@@ -15,33 +25,9 @@ const router = createBrowserRouter([
   {
     element: <PublicLayout />,
     children: [
-      {
-        path: '/',
-        element: (
-          <PlaceholderPage
-            title="Início"
-            description="Apresentação da concessionária e destaque para o catálogo de veículos."
-          />
-        ),
-      },
-      {
-        path: '/vehicles',
-        element: (
-          <PlaceholderPage
-            title="Catálogo de veículos"
-            description="Listagem pública de veículos disponíveis."
-          />
-        ),
-      },
-      {
-        path: '/vehicles/:vehicleId',
-        element: (
-          <PlaceholderPage
-            title="Detalhes do veículo"
-            description="Informações completas de um veículo do catálogo."
-          />
-        ),
-      },
+      { path: '/', element: <HomePage /> },
+      { path: '/vehicles', element: <VehicleCatalogPage /> },
+      { path: '/vehicles/:vehicleId', element: <VehicleDetailsPage /> },
       {
         element: <RequireGuest />,
         children: [
@@ -59,48 +45,12 @@ const router = createBrowserRouter([
       {
         element: <AccountLayout />,
         children: [
-          {
-            path: '/account',
-            element: (
-              <PlaceholderPage
-                title="Painel do cliente"
-                description="Visão geral da conta e atalhos para compras, test drives e financiamento."
-              />
-            ),
-          },
-          {
-            path: '/account/profile',
-            element: (
-              <PlaceholderPage title="Meu perfil" description="Dados pessoais do cliente." />
-            ),
-          },
-          {
-            path: '/account/purchases',
-            element: (
-              <PlaceholderPage title="Minhas compras" description="Histórico de compras." />
-            ),
-          },
-          {
-            path: '/account/purchases/:saleId',
-            element: (
-              <PlaceholderPage title="Detalhes da compra" description="Status e dados da venda." />
-            ),
-          },
-          {
-            path: '/account/test-drives',
-            element: (
-              <PlaceholderPage title="Meus test drives" description="Agendamentos de test drive." />
-            ),
-          },
-          {
-            path: '/account/financing',
-            element: (
-              <PlaceholderPage
-                title="Simulações de financiamento"
-                description="Histórico de simulações de financiamento."
-              />
-            ),
-          },
+          { path: '/account', element: <AccountDashboardPage /> },
+          { path: '/account/profile', element: <CustomerProfilePage /> },
+          { path: '/account/purchases', element: <MyPurchasesPage /> },
+          { path: '/account/purchases/:saleId', element: <PurchaseDetailsPage /> },
+          { path: '/account/test-drives', element: <MyTestDrivesPage /> },
+          { path: '/account/financing', element: <MyFinancingPage /> },
           {
             path: '/account/notifications',
             element: (
@@ -120,15 +70,7 @@ const router = createBrowserRouter([
           {
             element: <AdminProtectedOutlet />,
             children: [
-              {
-                path: '/admin',
-                element: (
-                  <PlaceholderPage
-                    title="Painel administrativo"
-                    description="Resumo operacional conforme o perfil do colaborador."
-                  />
-                ),
-              },
+              { path: '/admin', element: <AdminDashboardPage /> },
               {
                 path: '/admin/vehicles',
                 element: (

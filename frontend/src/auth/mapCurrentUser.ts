@@ -10,5 +10,6 @@ export function mapCurrentUser(dto: CurrentUserResponseBody): AuthUser {
     id: dto.id,
     email: dto.email,
     role: dto.role as UserRole,
+    clienteId: dto.cliente_id ?? null,
   }
 }
