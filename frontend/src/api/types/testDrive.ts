@@ -31,3 +31,8 @@ export type TestDriveCreateBody = {
 export type TestDriveStatusUpdateBody = {
   status: TestDriveStatus
 }
+
+export type TestDriveUpdateBody = {
+  data_agendamento: string
+  observacoes?: string | null
+}

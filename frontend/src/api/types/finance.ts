@@ -1,6 +1,7 @@
+import type { PaymentStatus } from '../../types/payment'
 import type { PaymentMethod } from '../../types/sale'
 
-export type PaymentStatus = 'PENDENTE' | 'APROVADO' | 'RECUSADO' | 'CANCELADO'
+export type { PaymentStatus }
 
 export type FinanceSummaryBody = {
   total_payments: number

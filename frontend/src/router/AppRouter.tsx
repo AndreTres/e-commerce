@@ -1,5 +1,18 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { AdminDashboardPage } from '../pages/admin/AdminDashboardPage'
+import { AdminClientEditPage } from '../pages/admin/clients/AdminClientEditPage'
+import { AdminClientsListPage } from '../pages/admin/clients/AdminClientsListPage'
+import { AdminSaleDetailPage } from '../pages/admin/sales/AdminSaleDetailPage'
+import { AdminSalesListPage } from '../pages/admin/sales/AdminSalesListPage'
+import { AdminReportsPage } from '../pages/admin/reports/AdminReportsPage'
+import { AdminNotificationsPage } from '../pages/admin/notifications/AdminNotificationsPage'
+import { AdminFinancePage } from '../pages/admin/finance/AdminFinancePage'
+import { AdminPaymentDetailPage } from '../pages/admin/finance/AdminPaymentDetailPage'
+import { AdminTestDriveDetailPage } from '../pages/admin/test-drives/AdminTestDriveDetailPage'
+import { AdminTestDrivesListPage } from '../pages/admin/test-drives/AdminTestDrivesListPage'
+import { AdminVehicleEditPage } from '../pages/admin/vehicles/AdminVehicleEditPage'
+import { AdminVehicleNewPage } from '../pages/admin/vehicles/AdminVehicleNewPage'
+import { AdminVehiclesListPage } from '../pages/admin/vehicles/AdminVehiclesListPage'
 import { AdminProtectedOutlet } from '../auth/AdminProtectedOutlet'
 import { RequireAuth } from '../auth/RequireAuth'
 import { RequireGuest } from '../auth/RequireGuest'
@@ -71,93 +84,25 @@ const router = createBrowserRouter([
             element: <AdminProtectedOutlet />,
             children: [
               { path: '/admin', element: <AdminDashboardPage /> },
-              {
-                path: '/admin/vehicles',
-                element: (
-                  <PlaceholderPage title="Gestão de veículos" description="Inventário da concessionária." />
-                ),
-              },
-              {
-                path: '/admin/vehicles/new',
-                element: (
-                  <PlaceholderPage title="Cadastrar veículo" description="Registro de novo veículo." />
-                ),
-              },
-              {
-                path: '/admin/vehicles/:vehicleId',
-                element: (
-                  <PlaceholderPage
-                    title="Veículo — detalhes / edição"
-                    description="Consulta e alteração de veículo."
-                  />
-                ),
-              },
-              {
-                path: '/admin/clients',
-                element: (
-                  <PlaceholderPage title="Gestão de clientes" description="Cadastro e consulta de clientes." />
-                ),
-              },
-              {
-                path: '/admin/clients/:clientId',
-                element: (
-                  <PlaceholderPage
-                    title="Cliente — detalhes / edição"
-                    description="Consulta e alteração de cliente."
-                  />
-                ),
-              },
-              {
-                path: '/admin/sales',
-                element: (
-                  <PlaceholderPage title="Gestão de vendas" description="Acompanhamento de vendas." />
-                ),
-              },
-              {
-                path: '/admin/sales/:saleId',
-                element: (
-                  <PlaceholderPage title="Venda — detalhes" description="Status e informações da venda." />
-                ),
-              },
-              {
-                path: '/admin/test-drives',
-                element: (
-                  <PlaceholderPage title="Gestão de test drives" description="Agendamentos de test drive." />
-                ),
-              },
+              { path: '/admin/vehicles', element: <AdminVehiclesListPage /> },
+              { path: '/admin/vehicles/new', element: <AdminVehicleNewPage /> },
+              { path: '/admin/vehicles/:vehicleId', element: <AdminVehicleEditPage /> },
+              { path: '/admin/clients', element: <AdminClientsListPage /> },
+              { path: '/admin/clients/:clientId', element: <AdminClientEditPage /> },
+              { path: '/admin/sales', element: <AdminSalesListPage /> },
+              { path: '/admin/sales/:saleId', element: <AdminSaleDetailPage /> },
+              { path: '/admin/test-drives', element: <AdminTestDrivesListPage /> },
               {
                 path: '/admin/test-drives/:testDriveId',
-                element: (
-                  <PlaceholderPage
-                    title="Test drive — detalhes"
-                    description="Consulta e atualização do agendamento."
-                  />
-                ),
+                element: <AdminTestDriveDetailPage />,
               },
-              {
-                path: '/admin/finance',
-                element: (
-                  <PlaceholderPage title="Gestão financeira" description="Pagamentos e resumo financeiro." />
-                ),
-              },
+              { path: '/admin/finance', element: <AdminFinancePage /> },
               {
                 path: '/admin/finance/payments/:paymentId',
-                element: (
-                  <PlaceholderPage title="Pagamento — detalhes" description="Consulta e status do pagamento." />
-                ),
+                element: <AdminPaymentDetailPage />,
               },
-              {
-                path: '/admin/notifications',
-                element: (
-                  <PlaceholderPage title="Gestão de notificações" description="Notificações aos clientes." />
-                ),
-              },
-              {
-                path: '/admin/reports',
-                element: (
-                  <PlaceholderPage title="Relatórios" description="Indicadores comerciais e financeiros." />
-                ),
-              },
+              { path: '/admin/notifications', element: <AdminNotificationsPage /> },
+              { path: '/admin/reports', element: <AdminReportsPage /> },
             ],
           },
         ],

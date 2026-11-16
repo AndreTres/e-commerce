@@ -5,7 +5,6 @@ export type ApiRequestOptions = {
   method?: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
   body?: unknown
   token?: string | null
-  /** When true, a 401 response triggers the global session handler. */
   handleSessionExpired?: boolean
 }
 

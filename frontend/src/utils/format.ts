@@ -30,7 +30,6 @@ export function formatDateTime(value: string): string {
   return dateTimeFormatter.format(date)
 }
 
-/** API stores monthly rate as percent (e.g. 1.0 = 1% per month). */
 export function formatMonthlyInterestRate(value: string | number): string {
   const numeric = typeof value === 'number' ? value : Number(value)
   if (Number.isNaN(numeric)) {

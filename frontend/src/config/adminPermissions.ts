@@ -68,7 +68,6 @@ export function getAdminNavForRole(role: UserRole): AdminNavItem[] {
   return ADMIN_NAV_ITEMS.filter((item) => allowed.includes(item.permission))
 }
 
-/** Maps admin URL prefixes to required permission (most specific first). */
 const ADMIN_ROUTE_PERMISSIONS: { prefix: string; permission: AdminPermission }[] =
   [
     { prefix: '/admin/vehicles', permission: 'vehicles' },

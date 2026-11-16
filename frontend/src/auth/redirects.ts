@@ -40,7 +40,6 @@ function canAccessPath(role: UserRole, path: string): boolean {
   return false
 }
 
-/** Resolves post-login redirect from optional `from` location state. */
 export function resolvePostLoginPath(role: UserRole, from?: string | null): string {
   if (from && from.startsWith('/') && canAccessPath(role, from)) {
     return from

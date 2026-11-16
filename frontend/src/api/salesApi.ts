@@ -30,12 +30,20 @@ function mapSale(dto: SaleResponseBody): Sale {
 
 export type ListSalesOptions = {
   status?: SaleStatus
+  clienteId?: string
+  veiculoId?: string
 }
 
 function buildSalesListPath(options: ListSalesOptions): string {
   const params = new URLSearchParams()
   if (options.status) {
     params.set('status', options.status)
+  }
+  if (options.clienteId?.trim()) {
+    params.set('cliente_id', options.clienteId.trim())
+  }
+  if (options.veiculoId?.trim()) {
+    params.set('veiculo_id', options.veiculoId.trim())
   }
   const query = params.toString()
   return query ? `/api/sales?${query}` : '/api/sales'
@@ -53,6 +61,19 @@ export async function listSales(
 
 export async function getSale(saleId: string, token: string): Promise<Sale> {
   const data = await apiRequest<SaleResponseBody>(`/api/sales/${saleId}`, {
+    token,
+  })
+  return mapSale(data)
+}
+
+export async function updateSaleStatus(
+  saleId: string,
+  status: SaleStatus,
+  token: string,
+): Promise<Sale> {
+  const data = await apiRequest<SaleResponseBody>(`/api/sales/${saleId}/status`, {
+    method: 'PATCH',
+    body: { status },
     token,
   })
   return mapSale(data)

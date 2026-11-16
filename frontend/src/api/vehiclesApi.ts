@@ -1,6 +1,10 @@
 import type { Vehicle, VehicleListFilters } from '../types/vehicle'
 import { apiRequest } from './httpClient'
-import type { VehicleResponseBody } from './types/vehicle'
+import type {
+  VehicleResponseBody,
+  VehicleStatusUpdateBody,
+  VehicleWriteBody,
+} from './types/vehicle'
 
 function mapVehicle(dto: VehicleResponseBody): Vehicle {
   return {
@@ -60,5 +64,49 @@ export async function getVehicle(vehicleId: string): Promise<Vehicle> {
   const data = await apiRequest<VehicleResponseBody>(`/api/vehicles/${vehicleId}`, {
     handleSessionExpired: false,
   })
+  return mapVehicle(data)
+}
+
+export async function createVehicle(
+  payload: VehicleWriteBody,
+  token: string,
+): Promise<Vehicle> {
+  const body = { ...payload, descricao: payload.descricao ?? '' }
+  const data = await apiRequest<VehicleResponseBody>('/api/vehicles', {
+    method: 'POST',
+    body,
+    token,
+  })
+  return mapVehicle(data)
+}
+
+export async function updateVehicle(
+  vehicleId: string,
+  payload: VehicleWriteBody,
+  token: string,
+): Promise<Vehicle> {
+  const body = { ...payload, descricao: payload.descricao ?? '' }
+  const data = await apiRequest<VehicleResponseBody>(`/api/vehicles/${vehicleId}`, {
+    method: 'PUT',
+    body,
+    token,
+  })
+  return mapVehicle(data)
+}
+
+export async function updateVehicleStatus(
+  vehicleId: string,
+  status: VehicleStatusUpdateBody['status'],
+  token: string,
+): Promise<Vehicle> {
+  const body: VehicleStatusUpdateBody = { status }
+  const data = await apiRequest<VehicleResponseBody>(
+    `/api/vehicles/${vehicleId}/status`,
+    {
+      method: 'PATCH',
+      body,
+      token,
+    },
+  )
   return mapVehicle(data)
 }

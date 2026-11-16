@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ApiError } from '../../api/errors'
-import type { FinanceSummaryBody, PaymentResponseBody } from '../../api/types/finance'
+import type { FinanceSummaryBody } from '../../api/types/finance'
 import type { SalesReportBody, VehicleInventoryReportBody } from '../../api/types/reports'
 import { listClients } from '../../api/clientsApi'
 import { getFinanceSummary, listPayments } from '../../api/financeApi'
@@ -21,6 +21,8 @@ import {
   type AdminPermission,
 } from '../../config/adminPermissions'
 import { useAuth } from '../../auth/AuthContext'
+import type { Payment } from '../../types/payment'
+import { PAYMENT_STATUS_LABELS } from '../../types/payment'
 import type { Sale } from '../../types/sale'
 import type { TestDrive } from '../../types/testDrive'
 import type { UserRole } from '../../types/user'
@@ -65,7 +67,7 @@ export function AdminDashboardPage() {
   const [recentSales, setRecentSales] = useState(emptySection<Sale[]>())
   const [salesTotal, setSalesTotal] = useState<number | null>(null)
   const [recentTestDrives, setRecentTestDrives] = useState(emptySection<TestDrive[]>())
-  const [recentPayments, setRecentPayments] = useState(emptySection<PaymentResponseBody[]>())
+  const [recentPayments, setRecentPayments] = useState(emptySection<Payment[]>())
   const [clientCount, setClientCount] = useState(emptySection<number>())
 
   const loadDashboard = useCallback(async () => {
@@ -193,8 +195,8 @@ export function AdminDashboardPage() {
           .then((data) => {
             const sorted = [...data].sort(
               (a, b) =>
-                new Date(b.data_pagamento).getTime() -
-                new Date(a.data_pagamento).getTime(),
+                new Date(b.dataPagamento).getTime() -
+                new Date(a.dataPagamento).getTime(),
             )
             setRecentPayments({
               loading: false,
@@ -519,7 +521,7 @@ function RecentTestDrivesSection({ state }: { state: SectionState<TestDrive[]> }
   )
 }
 
-function RecentPaymentsSection({ state }: { state: SectionState<PaymentResponseBody[]> }) {
+function RecentPaymentsSection({ state }: { state: SectionState<Payment[]> }) {
   return (
     <section className="admin-dashboard-section">
       <div className="section-heading admin-section-heading">
@@ -540,7 +542,8 @@ function RecentPaymentsSection({ state }: { state: SectionState<PaymentResponseB
               </Link>
               <span className="text-muted">
                 {' '}
-                · {payment.status} · {formatDateTime(payment.data_pagamento)}
+                · {PAYMENT_STATUS_LABELS[payment.status]} ·{' '}
+                {formatDateTime(payment.dataPagamento)}
               </span>
             </li>
           ))}

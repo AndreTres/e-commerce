@@ -24,6 +24,17 @@ export const SALE_STATUS_LABELS: Record<SaleStatus, string> = {
   CANCELADA: 'Cancelada',
 }
 
+export const ALLOWED_SALE_TRANSITIONS: Record<SaleStatus, readonly SaleStatus[]> = {
+  PENDENTE: ['EM_PROCESSAMENTO', 'CANCELADA'],
+  EM_PROCESSAMENTO: ['CONCLUIDA', 'CANCELADA'],
+  CONCLUIDA: [],
+  CANCELADA: [],
+}
+
+export function getAllowedSaleTransitions(from: SaleStatus): SaleStatus[] {
+  return [...ALLOWED_SALE_TRANSITIONS[from]]
+}
+
 export const PAYMENT_METHOD_LABELS: Record<PaymentMethod, string> = {
   DINHEIRO: 'Dinheiro',
   PIX: 'PIX',

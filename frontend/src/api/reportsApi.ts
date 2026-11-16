@@ -5,7 +5,7 @@ import type {
   VehicleInventoryReportBody,
 } from './types/reports'
 
-type DateRangeParams = {
+export type DateRangeParams = {
   startDate?: string
   endDate?: string
 }
