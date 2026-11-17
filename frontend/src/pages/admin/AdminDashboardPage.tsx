@@ -256,9 +256,6 @@ export function AdminDashboardPage() {
     <div className="account-stack admin-dashboard">
       <header className="account-page-header">
         <h1>Painel administrativo</h1>
-        <p className="text-muted">
-          Visão operacional para {user?.email ?? 'colaborador'} ({user?.role}).
-        </p>
       </header>
 
       {showReportsBlock ? (
@@ -567,17 +564,4 @@ function QuickLinksSection({ permissions }: { permissions: AdminPermission[] }) 
   if (links.length === 0) {
     return null
   }
-
-  return (
-    <section className="page-content admin-dashboard-section">
-      <h2>Atalhos</h2>
-      <ul className="admin-quick-links">
-        {links.map((link) => (
-          <li key={link.to}>
-            <Link to={link.to}>{link.label}</Link>
-          </li>
-        ))}
-      </ul>
-    </section>
-  )
 }

@@ -10,7 +10,7 @@ export function AdminLayout() {
     <div className="app-shell app-shell--admin">
       <aside className="admin-sidebar" aria-label="Administração">
         <Link to="/admin" className="brand brand--sidebar">
-          AutoCommerce
+          AutoHub
         </Link>
         <p className="sidebar-label">Administração</p>
         <nav className="admin-nav">

@@ -19,7 +19,7 @@ export function AccountLayout() {
     <div className="app-shell app-shell--account">
       <header className="site-header site-header--account">
         <Link to="/" className="brand">
-          AutoCommerce
+          AutoHub
         </Link>
         <span className="header-badge">Área do cliente</span>
         <div className="header-actions">

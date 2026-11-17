@@ -1,4 +1,4 @@
-const TOKEN_STORAGE_KEY = 'autocommerce_access_token'
+const TOKEN_STORAGE_KEY = 'autohub_access_token'
 
 export function getStoredToken(): string | null {
   try {

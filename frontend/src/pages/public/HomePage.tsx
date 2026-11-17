@@ -42,7 +42,7 @@ export function HomePage() {
   return (
     <div className="public-stack">
       <section className="home-hero page-content">
-        <h1>Concessionária AutoCommerce</h1>
+        <h1>Concessionária AutoHub</h1>
         <p className="home-hero__lead">
           Veículos seminovos e usados com atendimento transparente. Explore o
           catálogo, compare modelos e inicie sua compra ou test drive após

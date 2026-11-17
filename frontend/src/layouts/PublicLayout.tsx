@@ -9,7 +9,7 @@ export function PublicLayout() {
     <div className="app-shell app-shell--public">
       <header className="site-header">
         <Link to="/" className="brand">
-          AutoCommerce
+          AutoHub
         </Link>
         <nav className="site-nav" aria-label="Navegação principal">
           <NavLink to="/" end>
