@@ -58,7 +58,7 @@ export function AdminVehicleNewPage() {
   return (
     <article className="page-content admin-vehicle-form-page">
       <p className="vehicle-detail__back">
-        <Link to="/admin/vehicles">← Voltar à listagem</Link>
+        <Link to="/admin/vehicles">Voltar à listagem</Link>
       </p>
       <h1>Cadastrar veículo</h1>
       <p className="text-muted">

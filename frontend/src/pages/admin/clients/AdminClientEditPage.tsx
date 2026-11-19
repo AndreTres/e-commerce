@@ -150,10 +150,10 @@ export function AdminClientEditPage() {
     <div className="account-stack">
       <article className="page-content account-profile admin-client-form-page">
       <p className="vehicle-detail__back">
-        <Link to="/admin/clients">← Voltar à listagem</Link>
+        <Link to="/admin/clients">Voltar à listagem</Link>
       </p>
 
-      <h1>Cliente — detalhes e edição</h1>
+      <h1>Cliente - detalhes e edição</h1>
       {profile ? (
         <p className="text-muted">
           Cadastro desde {formatDateTime(profile.dataCadastro)} · ID {profile.id}
@@ -183,7 +183,7 @@ export function AdminClientEditPage() {
             aria-describedby="admin-client-cpf-hint"
           />
           <span id="admin-client-cpf-hint" className="field-hint">
-            Atual: {profile ? formatDocument(profile.cpfCnpj) : '—'}
+            Atual: {profile ? formatDocument(profile.cpfCnpj) : '-'}
           </span>
         </div>
         <div className="form-field">

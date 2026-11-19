@@ -85,7 +85,7 @@ export function VehicleDetailsPage() {
   return (
     <article className="vehicle-detail page-content">
       <p className="vehicle-detail__back">
-        <Link to="/vehicles">← Voltar ao catálogo</Link>
+        <Link to="/vehicles">Voltar ao catálogo</Link>
       </p>
 
       <header className="vehicle-detail__header">
@@ -132,8 +132,7 @@ export function VehicleDetailsPage() {
             {isAvailable ? (
               <p>
                 Este veículo está disponível no estoque. Compra, test drive e simulação
-                de financiamento exigem conta de cliente — serão implementados nas
-                próximas etapas.
+                de financiamento exigem conta de cliente.
               </p>
             ) : (
               <p className="text-muted">

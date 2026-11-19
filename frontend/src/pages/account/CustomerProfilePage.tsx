@@ -175,7 +175,7 @@ export function CustomerProfilePage() {
             aria-describedby="profile-cpf-hint"
           />
           <span id="profile-cpf-hint" className="field-hint">
-            Atual: {profile ? formatDocument(profile.cpfCnpj) : '—'}
+            Atual: {profile ? formatDocument(profile.cpfCnpj) : '-'}
           </span>
         </div>
         <div className="form-field">

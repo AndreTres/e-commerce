@@ -151,7 +151,7 @@ export function AdminSaleDetailPage() {
     <div className="account-stack">
       <article className="page-content purchase-detail admin-sale-detail">
         <p className="vehicle-detail__back">
-          <Link to="/admin/sales">← Voltar à listagem</Link>
+          <Link to="/admin/sales">Voltar à listagem</Link>
         </p>
 
         <header className="purchase-detail__header">

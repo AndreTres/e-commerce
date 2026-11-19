@@ -227,7 +227,7 @@ export function AdminTestDriveDetailPage() {
     <div className="account-stack">
       <article className="page-content purchase-detail admin-test-drive-detail">
         <p className="vehicle-detail__back">
-          <Link to="/admin/test-drives">← Voltar à listagem</Link>
+          <Link to="/admin/test-drives">Voltar à listagem</Link>
         </p>
 
         <header className="purchase-detail__header">
@@ -245,7 +245,7 @@ export function AdminTestDriveDetailPage() {
           <dd>
             {appointment.dataRealizacao
               ? formatDateTime(appointment.dataRealizacao)
-              : '—'}
+              : '-'}
           </dd>
           <dt>Cliente</dt>
           <dd>

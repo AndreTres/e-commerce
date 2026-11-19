@@ -92,7 +92,7 @@ def _seed_client(db: Session) -> Cliente:
         cpf_cnpj=SEED_CLIENT_CPF,
         email=email,
         telefone="11987654321",
-        endereco="Rua das Palmeiras, 120 — Jardins, São Paulo/SP",
+        endereco="Rua das Palmeiras, 120 - Jardins, São Paulo/SP",
         data_cadastro=_days_ago(120),
     )
     db.add(cliente)
@@ -402,7 +402,7 @@ def _seed_demo_data(db: Session, account_client: Cliente) -> None:
         cpf_cnpj=_cpf_from_base("529982247"),
         email=DEMO_MARKER_EMAIL,
         telefone="11984561234",
-        endereco="Av. Paulista, 1578 — Bela Vista, São Paulo/SP",
+        endereco="Av. Paulista, 1578 - Bela Vista, São Paulo/SP",
         data_cadastro=_days_ago(90),
     )
     bruno = _get_or_create_client(
@@ -411,7 +411,7 @@ def _seed_demo_data(db: Session, account_client: Cliente) -> None:
         cpf_cnpj=_cpf_from_base("153509460"),
         email="bruno.lima@example.com",
         telefone="21998877665",
-        endereco="Rua Voluntários da Pátria, 88 — Botafogo, Rio de Janeiro/RJ",
+        endereco="Rua Voluntários da Pátria, 88 - Botafogo, Rio de Janeiro/RJ",
         data_cadastro=_days_ago(75),
     )
     carla = _get_or_create_client(
@@ -420,7 +420,7 @@ def _seed_demo_data(db: Session, account_client: Cliente) -> None:
         cpf_cnpj=_cpf_from_base("111444777"),
         email="carla.mendes@example.com",
         telefone="31991234567",
-        endereco="Av. Afonso Pena, 4000 — Funcionários, Belo Horizonte/MG",
+        endereco="Av. Afonso Pena, 4000 - Funcionários, Belo Horizonte/MG",
         data_cadastro=_days_ago(40),
     )
     diego = _get_or_create_client(
@@ -429,7 +429,7 @@ def _seed_demo_data(db: Session, account_client: Cliente) -> None:
         cpf_cnpj="11444777000161",
         email="diego.rocha@example.com",
         telefone="41997771234",
-        endereco="Rua XV de Novembro, 650 — Centro, Curitiba/PR",
+        endereco="Rua XV de Novembro, 650 - Centro, Curitiba/PR",
         data_cadastro=_days_ago(20),
     )
 

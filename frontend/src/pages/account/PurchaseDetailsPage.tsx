@@ -99,7 +99,7 @@ export function PurchaseDetailsPage() {
   return (
     <article className="page-content purchase-detail">
       <p className="vehicle-detail__back">
-        <Link to="/account/purchases">← Voltar às compras</Link>
+        <Link to="/account/purchases">Voltar às compras</Link>
       </p>
 
       <header className="purchase-detail__header">

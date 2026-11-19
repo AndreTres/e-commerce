@@ -94,7 +94,7 @@ export function HomePage() {
       </section>
 
       <section className="home-info page-content">
-        <h2>Como funciona</h2>
+        <h2>Instruções</h2>
         <ol className="home-steps">
           <li>Navegue pelo catálogo e consulte preço, quilometragem e descrição.</li>
           <li>Entre com sua conta de cliente para comprar, simular financiamento ou agendar test drive.</li>

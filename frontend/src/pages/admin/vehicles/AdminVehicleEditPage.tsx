@@ -188,7 +188,7 @@ export function AdminVehicleEditPage() {
     <div className="account-stack">
       <article className="page-content admin-vehicle-form-page">
         <p className="vehicle-detail__back">
-          <Link to="/admin/vehicles">← Voltar à listagem</Link>
+          <Link to="/admin/vehicles">Voltar à listagem</Link>
         </p>
         <header className="purchase-detail__header">
           <div>

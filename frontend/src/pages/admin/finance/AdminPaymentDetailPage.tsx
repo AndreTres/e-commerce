@@ -149,7 +149,7 @@ export function AdminPaymentDetailPage() {
     <div className="account-stack">
       <article className="page-content purchase-detail admin-payment-detail">
         <p className="vehicle-detail__back">
-          <Link to="/admin/finance">← Voltar à gestão financeira</Link>
+          <Link to="/admin/finance">Voltar à gestão financeira</Link>
         </p>
 
         <header className="purchase-detail__header">

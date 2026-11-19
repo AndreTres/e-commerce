@@ -311,7 +311,7 @@ function SalesReportSection({
             rows={rows.map((row) => [
               row.label,
               String(row.count),
-              row.value ?? '—',
+              row.value ?? '-',
             ])}
           />
         </>
