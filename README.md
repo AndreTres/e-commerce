@@ -15,7 +15,6 @@ Estrutura principal:
 ```text
 backend/   API, migrations, modelos e dados demonstrativos
 frontend/  interface web
-docs/      materiais de apoio por sprint
 ```
 
 ## Requisitos
